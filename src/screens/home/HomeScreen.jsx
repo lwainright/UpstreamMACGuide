@@ -5,54 +5,18 @@ import BottomNav from '../../components/BottomNav'
 import { useAuth } from '../../context/AuthContext'
 
 const TILES = [
-  {
-    path:    '/jobsites/new',
-    label:   'New Jobsite',
-    desc:    'Start a new job or project',
-    icon:    '📍',
-    accent:  '#E85C00'
-  },
-  {
-    path:    '/jobsites',
-    label:   'My Jobsites',
-    desc:    'View all active sites',
-    icon:    '🏗',
-    accent:  '#2D8653'
-  },
-  {
-    path:    '/materials',
-    label:   'Materials',
-    desc:    'Lists, checklists, orders',
-    icon:    '📋',
-    accent:  '#2176AE'
-  },
-  {
-    path:    '/contacts',
-    label:   'Supply Squad',
-    desc:    'Vendors and trade contacts',
-    icon:    '📞',
-    accent:  '#7B2D8B'
-  },
-  {
-    path:    '/home-jobs',
-    label:   'Home Jobs',
-    desc:    'Family project list',
-    icon:    '🏠',
-    accent:  '#C4861A'
-  },
-  {
-    path:    '/profile',
-    label:   'Settings',
-    desc:    'Account and preferences',
-    icon:    '⚙️',
-    accent:  '#555555'
-  },
+  { path: '/jobsites/new', label: 'New Jobsite',  desc: 'Start a new job',        icon: '📍', accent: '#E85C00' },
+  { path: '/jobsites',     label: 'My Jobsites',  desc: 'View all active sites',  icon: '🏗',  accent: '#2D8653' },
+  { path: '/materials',    label: 'Materials',    desc: 'Lists & checklists',      icon: '📋', accent: '#2176AE' },
+  { path: '/contacts',     label: 'Supply Squad', desc: 'Vendors & trades',        icon: '📞', accent: '#7B2D8B' },
+  { path: '/home-jobs',    label: 'Home Jobs',    desc: 'Family project list',     icon: '🏠', accent: '#C4861A' },
+  { path: '/profile',      label: 'Settings',     desc: 'Account & preferences',  icon: '⚙️', accent: '#555555' },
 ]
 
 export default function HomeScreen() {
-  const navigate   = useNavigate()
-  const { user }   = useAuth()
-  const firstName  = user?.name?.split(' ')[0] || 'there'
+  const navigate  = useNavigate()
+  const { user }  = useAuth()
+  const firstName = user?.name?.split(' ')[0] || 'there'
 
   return (
     <>
@@ -66,55 +30,46 @@ export default function HomeScreen() {
           </p>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 12
-        }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {TILES.map(tile => (
             <button
               key={tile.path}
               onClick={() => navigate(tile.path)}
               style={{
                 background:       'var(--charcoal-mid)',
-                border:           `1px solid var(--charcoal-light)`,
+                border:           '1px solid var(--charcoal-light)',
                 borderTop:        `3px solid ${tile.accent}`,
                 borderRadius:     14,
-                padding:          '18px 14px',
+                padding:          '20px 12px',
                 cursor:           'pointer',
-                textAlign:        'left',
-                transition:       'border-color 0.15s, transform 0.1s',
+                textAlign:        'center',
+                display:          'flex',
+                flexDirection:    'column',
+                alignItems:       'center',
+                gap:              8,
+                transition:       'transform 0.1s',
                 WebkitAppearance: 'none'
               }}
-              onTouchStart={e => {
-                e.currentTarget.style.borderColor  = tile.accent
-                e.currentTarget.style.transform    = 'scale(0.97)'
-              }}
-              onTouchEnd={e => {
-                e.currentTarget.style.borderColor  = 'var(--charcoal-light)'
-                e.currentTarget.style.transform    = 'scale(1)'
-              }}
+              onTouchStart={e => e.currentTarget.style.transform = 'scale(0.96)'}
+              onTouchEnd={e =>   e.currentTarget.style.transform = 'scale(1)'}
             >
-              {/* Icon with colored background circle */}
               <div style={{
-                width:          44,
-                height:         44,
-                borderRadius:   12,
+                width:          48,
+                height:         48,
+                borderRadius:   14,
                 background:     `${tile.accent}22`,
+                border:         `1px solid ${tile.accent}44`,
                 display:        'flex',
                 alignItems:     'center',
                 justifyContent: 'center',
-                fontSize:       22,
-                marginBottom:   12,
-                border:         `1px solid ${tile.accent}44`
+                fontSize:       24
               }}>
                 {tile.icon}
               </div>
-
-              <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--cream)', marginBottom: 4 }}>
+              <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--cream)' }}>
                 {tile.label}
               </div>
-              <div style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.4 }}>
+              <div style={{ fontSize: 11, color: 'var(--muted)', lineHeight: 1.4 }}>
                 {tile.desc}
               </div>
             </button>
