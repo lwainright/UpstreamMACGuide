@@ -8,7 +8,6 @@ const STORES     = ['jobsites', 'materials', 'notes', 'syncQueue']
 
 let db = null
 
-// Open IndexedDB
 export async function openLocalDB() {
   if (db) return db
   return new Promise((resolve, reject) => {
@@ -26,14 +25,13 @@ export async function openLocalDB() {
   })
 }
 
-// Save to local IndexedDB
 export async function saveLocal(store, item) {
   const d = await openLocalDB()
   return new Promise((resolve, reject) => {
     const tx  = d.transaction(store, 'readwrite')
     const req = tx.objectStore(store).put({
       ...item,
-      updatedAt: new Date().toISOString(),
+      updatedAt:  new Date().toISOString(),
       syncStatus: item.syncStatus || 'local'
     })
     req.onsuccess = () => resolve(req.result)
@@ -41,7 +39,6 @@ export async function saveLocal(store, item) {
   })
 }
 
-// Get all from local store
 export async function getAllLocal(store) {
   const d = await openLocalDB()
   return new Promise((resolve, reject) => {
@@ -52,7 +49,6 @@ export async function getAllLocal(store) {
   })
 }
 
-// Get single item
 export async function getLocal(store, id) {
   const d = await openLocalDB()
   return new Promise((resolve, reject) => {
@@ -63,7 +59,6 @@ export async function getLocal(store, id) {
   })
 }
 
-// Delete from local
 export async function deleteLocal(store, id) {
   const d = await openLocalDB()
   return new Promise((resolve, reject) => {
@@ -74,11 +69,10 @@ export async function deleteLocal(store, id) {
   })
 }
 
-// Add item to sync queue
 export async function queueForSync(action, store, item) {
   await saveLocal('syncQueue', {
     id:        `sq_${Date.now()}_${Math.random().toString(36).slice(2)}`,
-    action,    // 'create' | 'update' | 'delete'
+    action,
     store,
     item,
     retries:   0,
@@ -86,29 +80,28 @@ export async function queueForSync(action, store, item) {
   })
 }
 
-// Get pending sync queue
 export async function getSyncQueue() {
   return getAllLocal('syncQueue')
 }
 
-// Remove from sync queue after successful sync
 export async function removeFromQueue(id) {
   return deleteLocal('syncQueue', id)
 }
 
-// Generate jobsite code — SMTH-001 format
 export function generateJobsiteCode(name) {
-  const prefix = (name || 'SITE').replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 4).padEnd(4, 'X')
-  const num    = String(Math.floor(Math.random() * 900) + 100)
+  const prefix = (name || 'SITE')
+    .replace(/[^a-zA-Z]/g, '')
+    .toUpperCase()
+    .slice(0, 4)
+    .padEnd(4, 'X')
+  const num = String(Math.floor(Math.random() * 900) + 100)
   return `${prefix}-${num}`
 }
 
-// Generate unique ID (matches Appwrite ID.unique() pattern)
 export function localId() {
   return `local_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
 }
 
-// Last synced timestamp
 export function setLastSynced() {
   localStorage.setItem('mac_last_synced', new Date().toISOString())
 }
