@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 
 export default function LoginScreen() {
-  const { loginMagicLink, loginGoogle } = useAuth()
+  const { loginMagicLink } = useAuth()
   const [email,   setEmail]   = useState('')
   const [sent,    setSent]    = useState(false)
   const [loading, setLoading] = useState(false)
@@ -88,12 +88,14 @@ export default function LoginScreen() {
             </button>
           </form>
 
+          {/* Google OAuth — disabled during development
+              TODO: Re-enable when Google OAuth is configured
+              See CLAUDE.md — Pending section for setup instructions
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '16px 0' }}>
             <div style={{ flex: 1, height: 1, background: 'var(--charcoal-light)' }} />
             <span style={{ color: 'var(--muted)', fontSize: 13 }}>or</span>
             <div style={{ flex: 1, height: 1, background: 'var(--charcoal-light)' }} />
           </div>
-
           <button
             className="btn btn-secondary"
             onClick={loginGoogle}
@@ -102,6 +104,7 @@ export default function LoginScreen() {
             <span style={{ fontSize: 18 }}>G</span>
             Continue with Google
           </button>
+          */}
 
           <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: 12, marginTop: 24, lineHeight: 1.6 }}>
             Upstream Initiative LLC &middot; Upstream MAC Guide
