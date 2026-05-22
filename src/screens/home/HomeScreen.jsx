@@ -5,12 +5,12 @@ import BottomNav from '../../components/BottomNav'
 import { useAuth } from '../../context/AuthContext'
 
 const TILES = [
-  { path: '/jobsites/new', label: 'New Jobsite',  desc: 'Start a new job',        icon: '📍', accent: '#E85C00' },
-  { path: '/jobsites',     label: 'My Jobsites',  desc: 'View all active sites',  icon: '🏗',  accent: '#2D8653' },
-  { path: '/materials',    label: 'Materials',    desc: 'Lists & checklists',      icon: '📋', accent: '#2176AE' },
-  { path: '/contacts',     label: 'Supply Squad', desc: 'Vendors & trades',        icon: '📞', accent: '#7B2D8B' },
-  { path: '/home-jobs',    label: 'Home Jobs',    desc: 'Family project list',     icon: '🏠', accent: '#C4861A' },
-  { path: '/profile',      label: 'Settings',     desc: 'Account & preferences',  icon: '⚙️', accent: '#555555' },
+  { path: '/jobsites/new', label: 'New Jobsite',  desc: 'Start a new job',       icon: '📍', accent: '#E85C00' },
+  { path: '/jobsites',     label: 'My Jobsites',  desc: 'View all active sites', icon: '🏗',  accent: '#2D8653' },
+  { path: '/materials',    label: 'Materials',    desc: 'Lists & checklists',    icon: '📋', accent: '#2176AE' },
+  { path: '/contacts',     label: 'Supply Squad', desc: 'Vendors & trades',      icon: '📞', accent: '#7B2D8B' },
+  { path: '/home-jobs',    label: 'Home Jobs',    desc: 'Family project list',   icon: '🏠', accent: '#C4861A' },
+  { path: '/profile',      label: 'Settings',     desc: 'Account & preferences', icon: '🔧', accent: '#607D8B' },
 ]
 
 export default function HomeScreen() {
