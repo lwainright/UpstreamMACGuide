@@ -1,6 +1,5 @@
 // src/components/AppHeader.jsx
 import { useSync } from '../context/SyncContext'
-import logo from '/icons/icon-192.png'
 
 export default function AppHeader({ title, onBack, rightAction }) {
   const { online, statusText } = useSync()
@@ -23,14 +22,13 @@ export default function AppHeader({ title, onBack, rightAction }) {
         {onBack ? (
           <button onClick={onBack} style={{
             background: 'none', border: 'none', color: 'var(--orange)',
-            fontSize: 24, cursor: 'pointer', padding: '4px 8px 4px 0',
-            lineHeight: 1
+            fontSize: 24, cursor: 'pointer', padding: '4px 8px 4px 0', lineHeight: 1
           }}>
             &#8592;
           </button>
         ) : (
           <img
-            src={logo}
+            src="/icons/icon-192.png"
             alt="MAC"
             style={{ width: 36, height: 36, borderRadius: '50%' }}
           />
