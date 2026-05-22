@@ -20,11 +20,34 @@ export default function AppHeader({ title, onBack, rightAction }) {
       {/* Left — back button or logo */}
       <div style={{ width: 80, display: 'flex', alignItems: 'center' }}>
         {onBack ? (
-          <button onClick={onBack} style={{
-            background: 'none', border: 'none', color: 'var(--orange)',
-            fontSize: 24, cursor: 'pointer', padding: '4px 8px 4px 0', lineHeight: 1
-          }}>
-            &#8592;
+          <button
+            onClick={onBack}
+            style={{
+              width:          38,
+              height:         38,
+              borderRadius:   '50%',
+              background:     'var(--orange)',
+              border:         'none',
+              cursor:         'pointer',
+              display:        'flex',
+              alignItems:     'center',
+              justifyContent: 'center',
+              flexShrink:     0,
+              transition:     'transform 0.1s, opacity 0.1s'
+            }}
+            onTouchStart={e => e.currentTarget.style.transform = 'scale(0.92)'}
+            onTouchEnd={e =>   e.currentTarget.style.transform = 'scale(1)'}
+          >
+            {/* Black arrow */}
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M11.5 3.5L6 9L11.5 14.5"
+                stroke="#111111"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
         ) : (
           <img
