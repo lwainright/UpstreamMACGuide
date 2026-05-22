@@ -1,32 +1,39 @@
 // src/components/AppHeader.jsx
-// Mirrors growAware AppHeader critical layout pattern
 import { useSync } from '../context/SyncContext'
+import logo from '/icons/icon-192.png'
 
 export default function AppHeader({ title, onBack, rightAction }) {
   const { online, statusText } = useSync()
 
   return (
     <div style={{
-      position: 'fixed',
+      position:       'fixed',
       top: 0, left: 0, right: 0,
-      height: 'var(--header-height)',
-      background: 'var(--charcoal)',
-      borderBottom: '1px solid var(--charcoal-light)',
-      display: 'flex',
-      alignItems: 'center',
+      height:         'var(--header-height)',
+      background:     'var(--charcoal)',
+      borderBottom:   '1px solid var(--charcoal-light)',
+      display:        'flex',
+      alignItems:     'center',
       justifyContent: 'space-between',
-      padding: '0 16px',
-      zIndex: 100
+      padding:        '0 16px',
+      zIndex:         100
     }}>
-      {/* Left — back button */}
-      <div style={{ width: 80 }}>
-        {onBack && (
+      {/* Left — back button or logo */}
+      <div style={{ width: 80, display: 'flex', alignItems: 'center' }}>
+        {onBack ? (
           <button onClick={onBack} style={{
             background: 'none', border: 'none', color: 'var(--orange)',
-            fontSize: 24, cursor: 'pointer', padding: '4px 8px 4px 0'
+            fontSize: 24, cursor: 'pointer', padding: '4px 8px 4px 0',
+            lineHeight: 1
           }}>
             &#8592;
           </button>
+        ) : (
+          <img
+            src={logo}
+            alt="MAC"
+            style={{ width: 36, height: 36, borderRadius: '50%' }}
+          />
         )}
       </div>
 
