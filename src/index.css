@@ -1,0 +1,211 @@
+/* src/index.css */
+/* MAC Guide Color System — never hardcode, always use these vars */
+
+:root {
+  --orange:       #E85C00;   /* primary — MAC text, action buttons, CTAs */
+  --orange-dark:  #C44800;   /* pressed states */
+  --orange-light: #FF7A1A;   /* highlights */
+  --charcoal:     #2C2C2C;   /* backgrounds, nav */
+  --charcoal-mid: #3a3a3a;   /* card surfaces */
+  --charcoal-light: #4a4a4a; /* borders, dividers */
+  --white:        #FFFFFF;
+  --cream:        #F5F4F0;   /* primary text on dark */
+  --muted:        #A0A0A0;   /* secondary text */
+  --success:      #2D8653;   /* code compliant, synced */
+  --danger:       #D63B3B;   /* errors, code violations */
+  --warning:      #E8A900;   /* conflicts, warnings */
+  --nav-height:   64px;
+  --header-height: 64px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--charcoal);
+  color: var(--cream);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Screen wrapper — accounts for header + bottom nav */
+.screen {
+  position: fixed;
+  top: var(--header-height);
+  bottom: var(--nav-height);
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+}
+
+/* Full screen — no header/nav (splash, auth) */
+.screen-full {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  background: var(--charcoal);
+}
+
+/* Card */
+.card {
+  background: var(--charcoal-mid);
+  border-radius: 12px;
+  border: 1px solid var(--charcoal-light);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+/* Button — primary */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  -webkit-appearance: none;
+}
+.btn:active { transform: scale(0.97); opacity: 0.9; }
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-secondary {
+  background: var(--charcoal-light);
+  color: var(--cream);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--charcoal-light);
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--charcoal);
+  border: 1px solid var(--charcoal-light);
+  border-radius: 10px;
+  color: var(--cream);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus { border-color: var(--orange); }
+.input::placeholder { color: var(--muted); }
+
+/* Label */
+.label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Status bar */
+.sync-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 0;
+}
+.sync-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.sync-dot.online  { background: var(--success); }
+.sync-dot.offline { background: var(--warning); }
+
+/* Checkbox item */
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--charcoal-light);
+  cursor: pointer;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item.checked .check-label { text-decoration: line-through; color: var(--muted); }
+
+.check-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 2px solid var(--charcoal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.check-box.checked {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+/* Jobsite code badge */
+.code-badge {
+  display: inline-flex;
+  align-items: center;
+  background: var(--charcoal);
+  border: 1px solid var(--orange);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 1px;
+  font-family: monospace;
+}
+
+/* Section header */
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 20px 0 10px;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+}
+.empty-state h3 { color: var(--cream); margin-bottom: 8px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--charcoal-light); border-radius: 2px; }
