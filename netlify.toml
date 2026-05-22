@@ -1,5 +1,4 @@
 # netlify.toml — Upstream MAC Guide
-# upstreammacguide.netlify.app
 # Matches Upstream Approach pattern
 
 [build]
@@ -9,21 +8,20 @@
 # SPA routing — all routes serve index.html
 [[redirects]]
   from = "/*"
-  to   = "/index.html"
+  to = "/index.html"
   status = 200
 
-# Security headers
+# Security headers — matches Upstream Approach
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options            = "DENY"
-    X-Content-Type-Options     = "nosniff"
-    X-XSS-Protection           = "1; mode=block"
-    Referrer-Policy            = "strict-origin-when-cross-origin"
-    Permissions-Policy         = "camera=self, microphone=self"
-    Strict-Transport-Security  = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=self, microphone=self"
 
-# Cache static assets aggressively
+# Cache static assets
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -34,9 +32,3 @@
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
-
-# Never cache manifest
-[[headers]]
-  for = "/manifest.webmanifest"
-  [headers.values]
-    Cache-Control = "no-cache"
