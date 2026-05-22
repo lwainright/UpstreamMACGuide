@@ -9,8 +9,8 @@ export default function AppHeader({ title, onBack, rightAction }) {
       position:       'fixed',
       top: 0, left: 0, right: 0,
       height:         'var(--header-height)',
-      background:     'var(--charcoal)',
-      borderBottom:   '1px solid var(--charcoal-light)',
+      background:     'linear-gradient(180deg, #1f1f1f 0%, #1a1a1a 100%)',
+      borderBottom:   '1px solid #333',
       display:        'flex',
       alignItems:     'center',
       justifyContent: 'space-between',
@@ -18,56 +18,77 @@ export default function AppHeader({ title, onBack, rightAction }) {
       zIndex:         100
     }}>
 
-      {/* Left — orange circle back button or logo */}
+      {/* Left — back button or logo */}
       <div style={{ width: 80, display: 'flex', alignItems: 'center' }}>
         {onBack ? (
           <button
             onClick={onBack}
             style={{
-              width:          48,
-              height:         48,
+              width:          42,
+              height:         42,
               borderRadius:   '50%',
-              background:     '#E85C00',
-              border:         'none',
+              background:     'linear-gradient(145deg, #ff6b1a, #c44800)',
+              border:         '1.5px solid rgba(255,107,26,0.4)',
               cursor:         'pointer',
               display:        'flex',
               alignItems:     'center',
               justifyContent: 'center',
               padding:        0,
-              boxShadow:      '0 2px 8px rgba(232,92,0,0.4)',
-              transition:     'transform 0.1s',
+              boxShadow:      '0 2px 12px rgba(232,92,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15)',
+              transition:     'all 0.15s ease',
               flexShrink:     0
             }}
-            onTouchStart={e => e.currentTarget.style.transform = 'scale(0.93)'}
+            onMouseEnter={e => {
+              e.currentTarget.style.boxShadow = '0 4px 18px rgba(232,92,0,0.55), inset 0 1px 0 rgba(255,255,255,0.15)'
+              e.currentTarget.style.transform = 'translateY(-1px)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.boxShadow = '0 2px 12px rgba(232,92,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15)'
+              e.currentTarget.style.transform = 'translateY(0)'
+            }}
+            onMouseDown={e =>  e.currentTarget.style.transform = 'scale(0.94) translateY(0)'}
+            onMouseUp={e =>    e.currentTarget.style.transform = 'translateY(-1px)'}
+            onTouchStart={e => e.currentTarget.style.transform = 'scale(0.94)'}
             onTouchEnd={e =>   e.currentTarget.style.transform = 'scale(1)'}
-            onMouseDown={e =>  e.currentTarget.style.transform = 'scale(0.93)'}
-            onMouseUp={e =>    e.currentTarget.style.transform = 'scale(1)'}
           >
-            <span style={{
-              color:      '#000000',
-              fontSize:   22,
-              fontWeight: 900,
-              lineHeight: 1,
-              marginLeft: -2
-            }}>&#8592;</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M10 3L5 8L10 13"
+                stroke="#000"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
         ) : (
           <img
             src="/icons/icon-192.png"
             alt="MAC"
-            style={{ width: 40, height: 40, borderRadius: '50%' }}
+            style={{
+              width:      38,
+              height:     38,
+              borderRadius: '50%',
+              border:     '1.5px solid #333',
+              boxShadow:  '0 2px 8px rgba(0,0,0,0.4)'
+            }}
           />
         )}
       </div>
 
       {/* Center — title + sync indicator */}
       <div style={{ textAlign: 'center', flex: 1 }}>
-        <div style={{ fontWeight: 700, fontSize: 17, color: 'var(--cream)' }}>
+        <div style={{
+          fontWeight:    700,
+          fontSize:      17,
+          color:         '#f5f4f0',
+          letterSpacing: '0.3px'
+        }}>
           {title}
         </div>
-        <div className="sync-bar" style={{ justifyContent: 'center' }}>
+        <div className="sync-bar" style={{ justifyContent: 'center', marginTop: 1 }}>
           <span className={`sync-dot ${online ? 'online' : 'offline'}`} />
-          <span style={{ fontSize: 11 }}>{statusText}</span>
+          <span style={{ fontSize: 10, letterSpacing: '0.3px' }}>{statusText}</span>
         </div>
       </div>
 
