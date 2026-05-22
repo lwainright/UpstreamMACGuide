@@ -269,3 +269,19 @@ Same rules as Upstream Approach:
 ## Critical Bug History
 (Add bugs here as they are found — same pattern as Upstream Approach)
 1. None yet — build in progress
+
+---
+
+## Pending — Re-enable Before Launch
+
+### Google OAuth (disabled during development)
+Google button is commented out in `src/screens/auth/LoginScreen.jsx`.
+
+To re-enable:
+1. Go to console.cloud.google.com
+2. Create a project → Enable Google+ API
+3. OAuth 2.0 credentials → Web application
+4. Add authorized redirect URI: `https://nyc.cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/[PROJECT_ID]`
+5. Copy Client ID and Client Secret
+6. Appwrite console → Auth → Settings → Google → paste both keys → enable
+7. Uncomment the Google button block in LoginScreen.jsx
