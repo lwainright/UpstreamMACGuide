@@ -17,43 +17,45 @@ export default function AppHeader({ title, onBack, rightAction }) {
       padding:        '0 16px',
       zIndex:         100
     }}>
-      {/* Left — back button or logo */}
+
+      {/* Left — orange circle back button or logo */}
       <div style={{ width: 80, display: 'flex', alignItems: 'center' }}>
         {onBack ? (
           <button
             onClick={onBack}
             style={{
-              width:          38,
-              height:         38,
+              width:          48,
+              height:         48,
               borderRadius:   '50%',
-              background:     'var(--orange)',
+              background:     '#E85C00',
               border:         'none',
               cursor:         'pointer',
               display:        'flex',
               alignItems:     'center',
               justifyContent: 'center',
-              flexShrink:     0,
-              transition:     'transform 0.1s, opacity 0.1s'
+              padding:        0,
+              boxShadow:      '0 2px 8px rgba(232,92,0,0.4)',
+              transition:     'transform 0.1s',
+              flexShrink:     0
             }}
-            onTouchStart={e => e.currentTarget.style.transform = 'scale(0.92)'}
+            onTouchStart={e => e.currentTarget.style.transform = 'scale(0.93)'}
             onTouchEnd={e =>   e.currentTarget.style.transform = 'scale(1)'}
+            onMouseDown={e =>  e.currentTarget.style.transform = 'scale(0.93)'}
+            onMouseUp={e =>    e.currentTarget.style.transform = 'scale(1)'}
           >
-            {/* Black arrow */}
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M11.5 3.5L6 9L11.5 14.5"
-                stroke="#111111"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <span style={{
+              color:      '#000000',
+              fontSize:   22,
+              fontWeight: 900,
+              lineHeight: 1,
+              marginLeft: -2
+            }}>&#8592;</span>
           </button>
         ) : (
           <img
             src="/icons/icon-192.png"
             alt="MAC"
-            style={{ width: 36, height: 36, borderRadius: '50%' }}
+            style={{ width: 40, height: 40, borderRadius: '50%' }}
           />
         )}
       </div>
