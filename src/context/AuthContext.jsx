@@ -16,18 +16,12 @@ export function AuthProvider({ children }) {
   }, [])
 
   async function loginMagicLink(email) {
+    // Redirect URL must match exactly — no trailing slash
+    const redirectUrl = `${window.location.origin}/auth/verify`
     return account.createMagicURLToken(
       'unique()',
       email,
-      `${window.location.origin}/auth/verify`
-    )
-  }
-
-  async function loginGoogle() {
-    account.createOAuth2Session(
-      'google',
-      `${window.location.origin}/`,
-      `${window.location.origin}/auth/login`
+      redirectUrl
     )
   }
 
@@ -43,7 +37,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginMagicLink, loginGoogle, logout, refreshUser }}>
+    <AuthContext.Provider value={{ user, loading, loginMagicLink, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   )
