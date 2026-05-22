@@ -1,10 +1,9 @@
 // src/services/sync.js
 // Offline-first sync — IndexedDB local storage + Appwrite cloud sync
-// Every object stamped with jobsiteCode at creation
 
 const DB_NAME    = 'mac-guide-local'
-const DB_VERSION = 1
-const STORES     = ['jobsites', 'materials', 'notes', 'syncQueue']
+const DB_VERSION = 2
+const STORES     = ['jobsites', 'materials', 'notes', 'syncQueue', 'home_jobs', 'contacts']
 
 let db = null
 
